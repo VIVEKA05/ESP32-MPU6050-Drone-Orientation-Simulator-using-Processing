@@ -1,0 +1,126 @@
+DRONE ORIENTATION SIMULATOR – SETUP INSTRUCTIONS
+
+This project uses an ESP32 and MPU6050 sensor to calculate Pitch, Roll, and Yaw values and visualize the drone orientation using Processing IDE.
+To run this project successfully, please follow the instructions below.
+
+---
+
+1. REQUIRED LIBRARIES
+
+---
+
+This project requires the following two Arduino libraries:
+
+1. I2Cdev
+2. MPU6050 (Jeff Rowberg Library)
+
+Both libraries must be copied into the Arduino libraries folder.
+
+Steps:
+
+1. Locate the folder named "Arduino".
+2. Open the following directory:
+
+Documents → Arduino → libraries
+
+3. Copy the following two folders into this location:
+
+I2Cdev
+MPU6050
+
+The final folder structure should look like this:
+
+Arduino
+└── libraries
+├── I2Cdev
+└── MPU6050
+
+These libraries are required for communication between the ESP32 and the MPU6050 sensor and for calculating the orientation values using the DMP (Digital Motion Processor).
+
+---
+
+2. ARDUINO IDE SETUP
+
+---
+
+1. Open the Arduino IDE.
+2. Select the correct board.
+
+Tools → Board → ESP32 Dev Module
+
+3. Select the correct COM port.
+
+Tools → Port → COMxx
+(Choose the port where your ESP32 is connected.)
+
+4. Upload the ESP32 code provided in this project.
+
+---
+
+3. PROCESSING IDE INSTALLATION
+
+---
+
+The drone visualization is created using Processing IDE.
+
+Download Processing IDE from the official website:
+
+https://processing.org/download
+
+Install the software and open the provided Processing sketch (.pde file) in the project folder.
+
+---
+
+4. COM PORT CONFIGURATION IN PROCESSING
+
+---
+
+Inside the Processing code, you will find a line similar to this:
+
+Serial port = new Serial(this, "COM29", 115200);
+
+You must change the COM port number to match the port used by your ESP32.
+
+Example:
+
+If your ESP32 is connected to COM5, change it to:
+
+Serial port = new Serial(this, "COM5", 115200);
+
+Make sure the COM port number matches the one selected in Arduino IDE.
+
+---
+
+5. IMPORTANT NOTE
+
+---
+
+The Serial port can only be accessed by one program at a time.
+
+Therefore:
+
+• If the Processing IDE is running, the Arduino Serial Monitor will NOT work.
+• If the Arduino Serial Monitor is open, the Processing program will NOT receive data.
+
+Always ensure that ONLY ONE of the following is open at a time:
+
+1. Arduino Serial Monitor
+   OR
+2. Processing IDE
+
+Close the Serial Monitor before running the Processing visualization.
+
+---
+
+6. FINAL STEPS
+
+---
+
+1. Upload the Arduino code to ESP32.
+2. Close the Arduino Serial Monitor.
+3. Run the Processing sketch.
+4. The drone model will rotate according to the MPU6050 sensor movement.
+
+Your drone orientation simulator should now work correctly.
+
+---
